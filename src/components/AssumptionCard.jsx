@@ -2,15 +2,49 @@ import { useState, useRef, useEffect } from 'react'
 import { useDispatch } from '../state/AppContext'
 import guidedQuestions from '../data/guided-questions.json'
 
-export default function AssumptionCard({ assumption }) {
+/**
+ * Simple deterministic hash from a string to get a stable number.
+ * Used to derive per-card rotation so it doesn't shift on re-render.
+ */
+function hashCode(str) {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0
+  }
+  return hash
+}
+
+/**
+ * Derive a rotation in the range [-maxDeg, +maxDeg] from assumption ID.
+ */
+function getRotation(id, maxDeg = 2.5) {
+  const h = hashCode(id)
+  // Map hash to [-1, 1] then scale
+  const normalized = (h % 1000) / 1000
+  return normalized * maxDeg
+}
+
+export default function AssumptionCard({ assumption, isNew = false }) {
   const dispatch = useDispatch()
   const [isEditing, setIsEditing] = useState(false)
   const [editText, setEditText] = useState(assumption.text)
   const inputRef = useRef(null)
   const cancellingRef = useRef(false)
+  const [entering, setEntering] = useState(isNew)
 
   const color = guidedQuestions[assumption.ring].color
   const label = guidedQuestions[assumption.ring].label
+  const rotation = getRotation(assumption.id)
+
+  // Extra rotation for entry animation (larger swing)
+  const enterRotation = rotation + (hashCode(assumption.id) % 2 === 0 ? 8 : -8)
+
+  useEffect(() => {
+    if (entering) {
+      const timer = setTimeout(() => setEntering(false), 500)
+      return () => clearTimeout(timer)
+    }
+  }, [entering])
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
@@ -54,13 +88,44 @@ export default function AssumptionCard({ assumption }) {
     dispatch({ type: 'DELETE_ASSUMPTION', id: assumption.id })
   }
 
+  // Post-it background: muted/pastel tint of ring color on dark bg
+  const postitBg = `${color}15`
+
   return (
     <div
-      className="group bg-white/5 border border-white/10 rounded-xl p-4 border-l-4 transition-colors duration-200 hover:bg-white/[0.07]"
-      style={{ borderLeftColor: color }}
+      className={`
+        group relative border-l-4 rounded-lg p-4
+        transition-all duration-300
+        ${isEditing
+          ? 'bg-white/[0.08] shadow-lg shadow-white/5'
+          : 'hover:bg-white/[0.07]'
+        }
+        ${entering ? 'postit-entering' : ''}
+      `}
+      style={{
+        borderLeftColor: color,
+        backgroundColor: isEditing ? undefined : postitBg,
+        transform: isEditing ? 'rotate(0deg)' : `rotate(${rotation}deg)`,
+        boxShadow: isEditing
+          ? `0 0 20px ${color}20, 0 4px 12px rgba(0,0,0,0.3)`
+          : '0 2px 8px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.15)',
+        '--postit-rotation': `${rotation}deg`,
+        '--postit-enter-rotation': `${enterRotation}deg`,
+      }}
     >
+      {/* Tape strip at top center */}
+      {!isEditing && (
+        <div
+          className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-10 h-3 rounded-sm"
+          style={{
+            background: 'rgba(255,255,255,0.12)',
+            boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+          }}
+        />
+      )}
+
       {isEditing ? (
-        /* Edit mode */
+        /* Edit mode — flattened, no rotation, subtle glow */
         <input
           ref={inputRef}
           type="text"

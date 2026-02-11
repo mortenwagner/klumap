@@ -16,10 +16,12 @@ export default {
         },
         // O-Ring accent colors
         oring: {
-          opportunity: '#4ECDC4',
-          offering: '#FFB347',
-          operation: '#FF6B6B',
+          opportunity: '#c0392b',
+          offering: '#4a6a8a',
+          operation: '#7a8a7a',
         },
+        // UI accent (warm copper)
+        accent: '#c8956a',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

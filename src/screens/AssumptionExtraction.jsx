@@ -11,6 +11,7 @@ export default function AssumptionExtraction() {
   const dispatch = useDispatch()
   const [inputValue, setInputValue] = useState('')
   const inputRef = useRef(null)
+  const knownIdsRef = useRef(new Set(assumptions.map(a => a.id)))
 
   const ringData = guidedQuestions[activeRing]
   const ringColor = ringData.color
@@ -110,7 +111,7 @@ export default function AssumptionExtraction() {
         <div className="space-y-1">
           <h2 className="text-2xl sm:text-3xl font-bold">Surface your assumptions</h2>
           <p className="text-white/40 text-sm">
-            What do you believe to be true about your venture? Don't overthink it — capture what you haven't proven yet.
+            What do you believe to be true about your venture? Include both tested and untested assumptions — you'll sort them next.
           </p>
         </div>
 
@@ -171,16 +172,20 @@ export default function AssumptionExtraction() {
           </button>
         </div>
 
-        {/* Assumption cards */}
-        <div className="flex flex-col gap-3 flex-1">
+        {/* Assumption cards — board zone */}
+        <div className="flex flex-col gap-3 flex-1 bg-white/[0.02] rounded-xl p-3 -mx-1">
           {filteredAssumptions.length === 0 ? (
             <p className="text-white/20 text-sm italic py-8 text-center">
               No {ringData.label} assumptions yet. Use the questions above for inspiration.
             </p>
           ) : (
-            filteredAssumptions.map((assumption) => (
-              <AssumptionCard key={assumption.id} assumption={assumption} />
-            ))
+            filteredAssumptions.map((assumption) => {
+              const isNew = !knownIdsRef.current.has(assumption.id)
+              if (isNew) knownIdsRef.current.add(assumption.id)
+              return (
+                <AssumptionCard key={assumption.id} assumption={assumption} isNew={isNew} />
+              )
+            })
           )}
         </div>
 
@@ -202,7 +207,7 @@ export default function AssumptionExtraction() {
 
         {/* Guidance text */}
         <p className="text-white/20 text-xs italic">
-          Don't overthink it. Capture what you believe to be true but haven't proven. You can always add more later.
+          Capture everything — proven or not. Mapping what you know alongside what you don't is just as valuable.
         </p>
 
         {/* Footer navigation */}

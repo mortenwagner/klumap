@@ -25,9 +25,9 @@ export default function ProgressBar() {
                 className={`
                   w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300
                   ${isComplete
-                    ? 'bg-oring-opportunity text-navy-900'
+                    ? 'bg-accent text-navy-900'
                     : isActive
-                      ? 'bg-white/20 text-white ring-2 ring-oring-opportunity'
+                      ? 'bg-white/20 text-white ring-2 ring-accent'
                       : 'bg-white/5 text-white/30'
                   }
                 `}
@@ -51,7 +51,7 @@ export default function ProgressBar() {
             {i < steps.length - 1 && (
               <div
                 className={`w-8 sm:w-12 h-px transition-colors duration-300 ${
-                  isComplete ? 'bg-oring-opportunity' : 'bg-white/10'
+                  isComplete ? 'bg-accent' : 'bg-white/10'
                 }`}
               />
             )}

@@ -39,7 +39,7 @@ export default function VentureFraming() {
               placeholder="e.g. MealKit, GreenFleet, SkillBridge"
               className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl
                          text-white placeholder:text-white/20
-                         focus:outline-none focus:border-oring-opportunity/50 focus:ring-1 focus:ring-oring-opportunity/25
+                         focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/25
                          transition-colors"
             />
           </div>
@@ -58,7 +58,7 @@ export default function VentureFraming() {
               maxLength={150}
               className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl
                          text-white placeholder:text-white/20
-                         focus:outline-none focus:border-oring-opportunity/50 focus:ring-1 focus:ring-oring-opportunity/25
+                         focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/25
                          transition-colors"
             />
             <p className="text-xs text-white/20 text-right">{venture.description.length}/150</p>
@@ -80,7 +80,7 @@ export default function VentureFraming() {
                       flex flex-col items-start gap-1 p-4 rounded-xl border text-left
                       transition-all duration-200 min-h-[44px]
                       ${isSelected
-                        ? 'border-oring-opportunity/50 bg-oring-opportunity/10 ring-1 ring-oring-opportunity/25'
+                        ? 'border-accent/50 bg-accent/10 ring-1 ring-accent/25'
                         : 'border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/[0.07]'
                       }
                     `}

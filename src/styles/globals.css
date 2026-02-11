@@ -8,14 +8,14 @@
   }
 
   ::selection {
-    background-color: rgba(78, 205, 196, 0.3);
+    background-color: rgba(200, 149, 106, 0.3);
   }
 }
 
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-8 py-4
-           bg-oring-opportunity text-navy-900 font-semibold text-lg
+           bg-accent text-navy-900 font-semibold text-lg
            rounded-xl transition-all duration-200
            hover:brightness-110 hover:scale-[1.02]
            active:scale-[0.98]
@@ -34,18 +34,43 @@
 
 /* Subtle glow effect for key visuals */
 .glow-teal {
-  box-shadow: 0 0 60px rgba(78, 205, 196, 0.15);
+  box-shadow: 0 0 60px rgba(192, 57, 43, 0.15);
 }
 
 .glow-amber {
-  box-shadow: 0 0 60px rgba(255, 179, 71, 0.15);
+  box-shadow: 0 0 60px rgba(74, 106, 138, 0.15);
 }
 
 .glow-coral {
-  box-shadow: 0 0 60px rgba(255, 107, 107, 0.15);
+  box-shadow: 0 0 60px rgba(122, 138, 122, 0.15);
 }
 
 @keyframes pulse-ring {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
+}
+
+@keyframes motifPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.animate-motif {
+  animation: motifPulse 4s ease-in-out infinite;
+}
+
+/* Post-it entry animation */
+@keyframes postit-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(var(--postit-enter-rotation, 8deg)) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(var(--postit-rotation, 0deg)) translateY(0);
+  }
+}
+
+.postit-entering {
+  animation: postit-enter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }

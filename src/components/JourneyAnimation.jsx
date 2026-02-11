@@ -206,12 +206,12 @@ export default function JourneyAnimation() {
           className="mx-auto max-w-[420px] rounded-xl p-4 border shadow-2xl shadow-black/30 transition-opacity duration-500"
           style={{
             backgroundColor: 'rgba(15,15,26,0.97)',
-            borderColor: showMatrix ? 'rgba(255,255,255,0.06)' : 'rgba(78,205,196,0.2)',
+            borderColor: showMatrix ? 'rgba(255,255,255,0.06)' : 'rgba(200,149,106,0.2)',
             opacity: showMatrix ? 0.85 : 0.92,
           }}
         >
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-oring-opportunity/20 text-oring-opportunity tracking-wide">
+            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-accent/20 text-accent tracking-wide">
               PROMPT
             </span>
           </div>
@@ -220,7 +220,7 @@ export default function JourneyAnimation() {
               <>
                 {scenario.prompt.slice(0, typedChars)}
                 {typedChars < scenario.prompt.length && phase === 'typewriter' && (
-                  <span className="inline-block w-[2px] h-4 bg-oring-opportunity ml-0.5 animate-blink align-middle" />
+                  <span className="inline-block w-[2px] h-4 bg-accent ml-0.5 animate-blink align-middle" />
                 )}
               </>
             )}
@@ -279,7 +279,7 @@ export default function JourneyAnimation() {
 function PhaseIndicator({ phase }) {
   const configs = {
     postits:    { label: 'Capturing assumptions...', dotClass: 'bg-white/20', textClass: 'text-white/30' },
-    typewriter: { label: 'Generating validation prompt...', dotClass: 'bg-oring-opportunity/60', textClass: 'text-oring-opportunity/50' },
+    typewriter: { label: 'Generating validation prompt...', dotClass: 'bg-accent/60', textClass: 'text-accent/50' },
     matrix:     { label: 'AI validation strategy', dotClass: 'bg-emerald-400/60', textClass: 'text-emerald-400/50' },
     pause:      { label: 'AI validation strategy', dotClass: 'bg-emerald-400/60', textClass: 'text-emerald-400/50' },
   }

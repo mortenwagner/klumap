@@ -90,7 +90,7 @@ export default function HelpPanel() {
               <ul className="space-y-3">
                 {content.tips.map((tip, i) => (
                   <li key={i} className="flex gap-2.5 text-sm text-white/50 leading-relaxed">
-                    <span className="text-oring-opportunity mt-0.5 shrink-0">&#8250;</span>
+                    <span className="text-accent mt-0.5 shrink-0">&#8250;</span>
                     {tip}
                   </li>
                 ))}

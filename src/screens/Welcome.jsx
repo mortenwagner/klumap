@@ -1,6 +1,7 @@
 import { useDispatch } from '../state/AppContext'
 import ORingMotif from '../components/ORingMotif'
 import JourneyAnimation from '../components/JourneyAnimation'
+import guidedQuestions from '../data/guided-questions.json'
 
 export default function Welcome() {
   const dispatch = useDispatch()
@@ -28,6 +29,43 @@ export default function Welcome() {
             Identify the riskiest assumptions in your venture
             and generate AI prompts to test them.
           </p>
+
+          {/* Framework cards */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            {/* O-Rings of Innovation */}
+            <div className="flex-1 bg-white/5 border border-white/10 rounded-xl p-3">
+              <div className="flex items-center gap-2.5 mb-2">
+                {/* Mini O-Ring motif: 3 concentric circles */}
+                <svg width="28" height="28" viewBox="0 0 28 28" className="shrink-0">
+                  <circle cx="14" cy="14" r="5" fill="none" stroke={guidedQuestions.opportunity.color} strokeWidth="1.5" opacity="0.8" />
+                  <circle cx="14" cy="14" r="8.5" fill="none" stroke={guidedQuestions.offering.color} strokeWidth="1.5" opacity="0.6" />
+                  <circle cx="14" cy="14" r="12" fill="none" stroke={guidedQuestions.operation.color} strokeWidth="1.5" opacity="0.4" />
+                  <circle cx="14" cy="14" r="2" fill={guidedQuestions.opportunity.color} opacity="0.7" />
+                </svg>
+                <span className="text-sm font-semibold text-white/80">O-Rings of Innovation</span>
+              </div>
+              <p className="text-xs text-white/40 leading-relaxed">
+                Three layers of venture assumptions: Opportunity, Offering, Operation.
+              </p>
+            </div>
+
+            {/* The Clueless Corner */}
+            <div className="flex-1 bg-white/5 border border-white/10 rounded-xl p-3">
+              <div className="flex items-center gap-2.5 mb-2">
+                {/* Mini 2x2 grid icon */}
+                <svg width="28" height="28" viewBox="0 0 28 28" className="shrink-0">
+                  <rect x="3" y="3" width="10" height="10" rx="2" fill="rgba(200,149,106,0.3)" stroke="rgba(200,149,106,0.6)" strokeWidth="1" />
+                  <rect x="15" y="3" width="10" height="10" rx="2" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                  <rect x="3" y="15" width="10" height="10" rx="2" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                  <rect x="15" y="15" width="10" height="10" rx="2" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                </svg>
+                <span className="text-sm font-semibold text-white/80">The Clueless Corner</span>
+              </div>
+              <p className="text-xs text-white/40 leading-relaxed">
+                Map assumptions by importance vs evidence to find your blind spots.
+              </p>
+            </div>
+          </div>
 
           {/* CTA */}
           <button
