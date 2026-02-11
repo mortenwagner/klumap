@@ -24,14 +24,12 @@ function getRotation(id, maxDeg = 4) {
   return normalized * maxDeg
 }
 
-export default function AssumptionCard({ assumption, isNew = false }) {
+export default function AssumptionCard({ assumption }) {
   const dispatch = useDispatch()
   const [isEditing, setIsEditing] = useState(false)
   const [editText, setEditText] = useState(assumption.text)
   const inputRef = useRef(null)
   const cancellingRef = useRef(false)
-  const [entering, setEntering] = useState(isNew)
-
   const ringData = guidedQuestions[assumption.ring]
   const color = ringData.color
   const label = ringData.label
@@ -41,13 +39,6 @@ export default function AssumptionCard({ assumption, isNew = false }) {
 
   // Extra rotation for entry animation (larger swing)
   const enterRotation = rotation + (hashCode(assumption.id) % 2 === 0 ? 12 : -12)
-
-  useEffect(() => {
-    if (entering) {
-      const timer = setTimeout(() => setEntering(false), 700)
-      return () => clearTimeout(timer)
-    }
-  }, [entering])
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
@@ -93,18 +84,9 @@ export default function AssumptionCard({ assumption, isNew = false }) {
 
   return (
     <div
-      className={`
-        group relative rounded-sm p-4
-        transition-all duration-300
-        aspect-square flex flex-col
-        ${entering ? 'postit-entering' : ''}
-      `}
+      className="group relative rounded-sm p-4 aspect-square flex flex-col postit-card"
       style={{
         backgroundColor: postitBg,
-        transform: isEditing ? 'rotate(0deg)' : `rotate(${rotation}deg)`,
-        boxShadow: isEditing
-          ? `0 0 20px ${color}40, 0 4px 12px rgba(0,0,0,0.3)`
-          : '0 3px 10px rgba(0,0,0,0.25), 0 1px 4px rgba(0,0,0,0.15)',
         '--postit-rotation': `${rotation}deg`,
         '--postit-enter-rotation': `${enterRotation}deg`,
       }}

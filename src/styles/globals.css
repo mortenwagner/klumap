@@ -59,31 +59,34 @@
   animation: motifPulse 4s ease-in-out infinite;
 }
 
-/* Post-it entry animation — bouncy drop-in */
-@keyframes postit-enter {
+/* Post-it card — bouncy drop-in on mount, settles into rotation */
+@keyframes postit-drop {
   0% {
     opacity: 0;
     transform: scale(0.3) rotate(var(--postit-enter-rotation, 12deg)) translateY(-80px);
+    box-shadow: none;
   }
-  40% {
+  35% {
     opacity: 1;
-    transform: scale(1.15) rotate(calc(var(--postit-rotation, 0deg) - 3deg)) translateY(8px);
+    transform: scale(1.18) rotate(calc(var(--postit-rotation, 0deg) - 4deg)) translateY(10px);
   }
-  60% {
-    transform: scale(0.92) rotate(calc(var(--postit-rotation, 0deg) + 2deg)) translateY(-4px);
+  55% {
+    transform: scale(0.9) rotate(calc(var(--postit-rotation, 0deg) + 3deg)) translateY(-6px);
   }
-  75% {
-    transform: scale(1.05) rotate(calc(var(--postit-rotation, 0deg) - 1deg)) translateY(2px);
+  70% {
+    transform: scale(1.08) rotate(calc(var(--postit-rotation, 0deg) - 1.5deg)) translateY(3px);
   }
-  90% {
-    transform: scale(0.98) rotate(var(--postit-rotation, 0deg)) translateY(0);
+  85% {
+    transform: scale(0.97) rotate(var(--postit-rotation, 0deg)) translateY(-1px);
   }
   100% {
     opacity: 1;
     transform: scale(1) rotate(var(--postit-rotation, 0deg)) translateY(0);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25), 0 1px 4px rgba(0,0,0,0.15);
   }
 }
 
-.postit-entering {
-  animation: postit-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.postit-card {
+  animation: postit-drop 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25), 0 1px 4px rgba(0,0,0,0.15);
 }

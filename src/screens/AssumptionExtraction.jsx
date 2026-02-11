@@ -11,7 +11,6 @@ export default function AssumptionExtraction() {
   const dispatch = useDispatch()
   const [inputValue, setInputValue] = useState('')
   const inputRef = useRef(null)
-  const knownIdsRef = useRef(new Set(assumptions.map(a => a.id)))
 
   const ringData = guidedQuestions[activeRing]
   const ringColor = ringData.color
@@ -179,13 +178,9 @@ export default function AssumptionExtraction() {
               No {ringData.label} assumptions yet. Use the questions above for inspiration.
             </p>
           ) : (
-            filteredAssumptions.map((assumption) => {
-              const isNew = !knownIdsRef.current.has(assumption.id)
-              if (isNew) knownIdsRef.current.add(assumption.id)
-              return (
-                <AssumptionCard key={assumption.id} assumption={assumption} isNew={isNew} />
-              )
-            })
+            filteredAssumptions.map((assumption) => (
+              <AssumptionCard key={assumption.id} assumption={assumption} />
+            ))
           )}
         </div>
 
