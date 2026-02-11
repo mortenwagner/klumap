@@ -1,28 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useDispatch } from '../state/AppContext'
 import guidedQuestions from '../data/guided-questions.json'
-
-/**
- * Simple deterministic hash from a string to get a stable number.
- * Used to derive per-card rotation so it doesn't shift on re-render.
- */
-function hashCode(str) {
-  let hash = 0
-  for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0
-  }
-  return hash
-}
-
-/**
- * Derive a rotation in the range [-maxDeg, +maxDeg] from assumption ID.
- */
-function getRotation(id, maxDeg = 4) {
-  const h = hashCode(id)
-  // Map hash to [-1, 1] then scale
-  const normalized = (h % 1000) / 1000
-  return normalized * maxDeg
-}
+import { hashCode, getRotation } from '../utils/hash'
 
 export default function AssumptionCard({ assumption }) {
   const dispatch = useDispatch()

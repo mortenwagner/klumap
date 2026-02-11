@@ -1,26 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import guidedQuestions from '../data/guided-questions.json'
-
-/**
- * Simple deterministic hash from a string to get a stable number.
- */
-function hashCode(str) {
-  let hash = 0
-  for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0
-  }
-  return hash
-}
-
-/**
- * Derive a rotation in the range [-maxDeg, +maxDeg] from assumption ID.
- */
-function getRotation(id, maxDeg = 2.5) {
-  const h = hashCode(id)
-  const normalized = (h % 1000) / 1000
-  return normalized * maxDeg
-}
+import { getRotation } from '../utils/hash'
 
 /**
  * MatrixCard — compact draggable post-it card for the Clueless Corner matrix.
@@ -38,7 +19,7 @@ export default function MatrixCard({ assumption, isOverlay = false, onUnmap, isS
   const postitText = ringData.postitText
   const ringColor = ringData.color
   const ringLabel = ringData.label
-  const rotation = getRotation(assumption.id)
+  const rotation = getRotation(assumption.id, 2.5)
   const isClueless = assumption.quadrant === 'clueless'
   const hasQuadrant = assumption.quadrant != null
 
@@ -86,6 +67,12 @@ export default function MatrixCard({ assumption, isOverlay = false, onUnmap, isS
       style={!isOverlay ? { ...style, backgroundColor: postitBg } : { backgroundColor: postitBg, ...overlayStyle }}
       {...(!isOverlay ? { ...attributes, ...listeners } : {})}
       onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          handleClick(e)
+        }
+      }}
       className={`
         group relative rounded-sm p-3 min-h-[44px] touch-manipulation cursor-grab
         ${isOverlay ? 'z-50' : ''}

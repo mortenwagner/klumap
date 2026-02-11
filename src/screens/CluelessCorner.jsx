@@ -72,7 +72,7 @@ export default function CluelessCorner() {
   }, [assumptions])
 
   const totalCount = assumptions.length
-  const mappedCount = assumptions.filter((a) => a.quadrant != null).length
+  const mappedCount = totalCount - unmappedAssumptions.length
   const cluelessCount = mappedByQuadrant['clueless'].length
   const canProceed = cluelessCount >= 1
 
@@ -172,7 +172,7 @@ export default function CluelessCorner() {
 
       {/* Live counter */}
       <div className="text-sm text-white/40 flex items-center gap-2 flex-wrap">
-        <span style={{ color: '#c8956a' }} className="font-medium">
+        <span style={{ color: quadrantsConfig.quadrants.clueless.color }} className="font-medium">
           {cluelessCount} assumption{cluelessCount !== 1 ? 's' : ''} in the Clueless Corner
         </span>
         <span className="text-white/15">&middot;</span>
@@ -273,15 +273,16 @@ export default function CluelessCorner() {
  * Horizontal scroll on mobile, vertical sidebar on desktop.
  */
 function UnmappedSidebar({ assumptions, selectedCardId, onSelectCard }) {
-  const { setNodeRef } = useDroppableZone('unmapped-sidebar')
+  const { setNodeRef, isOver } = useDroppableZone('unmapped-sidebar')
   const isEmpty = assumptions.length === 0
 
   return (
     <div
       ref={setNodeRef}
       className={`
-        lg:w-[240px] lg:shrink-0 rounded-xl border border-white/[0.06]
-        bg-white/[0.02] p-3 sm:p-4
+        lg:w-[240px] lg:shrink-0 rounded-xl border
+        p-3 sm:p-4 transition-colors duration-200
+        ${isOver ? 'border-white/20 bg-white/[0.05]' : 'border-white/[0.06] bg-white/[0.02]'}
         ${isEmpty ? 'min-h-[80px] lg:min-h-0' : ''}
       `}
     >
