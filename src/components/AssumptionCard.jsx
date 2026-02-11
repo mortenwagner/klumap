@@ -7,6 +7,7 @@ export default function AssumptionCard({ assumption }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editText, setEditText] = useState(assumption.text)
   const inputRef = useRef(null)
+  const cancellingRef = useRef(false)
 
   const color = guidedQuestions[assumption.ring].color
   const label = guidedQuestions[assumption.ring].label
@@ -26,7 +27,16 @@ export default function AssumptionCard({ assumption }) {
     setIsEditing(false)
   }
 
+  function handleBlur() {
+    if (cancellingRef.current) {
+      cancellingRef.current = false
+      return
+    }
+    handleSave()
+  }
+
   function handleCancel() {
+    cancellingRef.current = true
     setEditText(assumption.text)
     setIsEditing(false)
   }
@@ -56,11 +66,11 @@ export default function AssumptionCard({ assumption }) {
           type="text"
           value={editText}
           onChange={(e) => setEditText(e.target.value)}
-          onBlur={handleSave}
+          onBlur={handleBlur}
           onKeyDown={handleKeyDown}
           className="w-full bg-white/5 border border-white/20 rounded-lg px-3 py-2
                      text-white text-sm
-                     focus:outline-none focus:border-oring-opportunity/50 focus:ring-1 focus:ring-oring-opportunity/25
+                     focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/10
                      transition-colors"
         />
       ) : (

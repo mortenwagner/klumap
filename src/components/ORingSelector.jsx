@@ -1,7 +1,7 @@
 import guidedQuestions from '../data/guided-questions.json'
 
 const RING_RADII = { opportunity: 30, offering: 55, operation: 80 }
-const RING_ORDER = ['opportunity', 'offering', 'operation']
+const RING_ORDER = Object.keys(guidedQuestions)
 const RINGS = RING_ORDER.map((name) => ({
   name,
   color: guidedQuestions[name].color,
@@ -20,7 +20,7 @@ export default function ORingSelector({ activeRing, onRingClick, assumptionCount
         aria-label="O-Ring layer selector"
       >
         {/* Center dot */}
-        <circle cx="100" cy="100" r="4" fill="#4ECDC4" opacity="0.8" />
+        <circle cx="100" cy="100" r="4" fill={guidedQuestions.opportunity.color} opacity="0.8" />
 
         {/* Rings — rendered outermost first so inner rings are on top for click priority */}
         {[...RINGS].reverse().map((ring) => {
@@ -66,12 +66,6 @@ export default function ORingSelector({ activeRing, onRingClick, assumptionCount
           )
         })}
 
-        <style>{`
-          @keyframes pulse-ring {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-          }
-        `}</style>
       </svg>
 
       {/* Labels with dots and counts */}

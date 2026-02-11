@@ -10,7 +10,9 @@ export const initialState = {
   helpPanelOpen: false,
 }
 
-let nextId = 1
+function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 7)
+}
 
 export function reducer(state, action) {
   switch (action.type) {
@@ -38,7 +40,7 @@ export function reducer(state, action) {
         assumptions: [
           ...state.assumptions,
           {
-            id: String(nextId++),
+            id: generateId(),
             text: action.text,
             ring: action.ring,
             quadrant: null,

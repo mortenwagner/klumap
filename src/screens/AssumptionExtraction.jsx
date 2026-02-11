@@ -4,7 +4,7 @@ import ORingSelector from '../components/ORingSelector'
 import AssumptionCard from '../components/AssumptionCard'
 import guidedQuestions from '../data/guided-questions.json'
 
-const RING_ORDER = ['opportunity', 'offering', 'operation']
+const RING_ORDER = Object.keys(guidedQuestions)
 
 export default function AssumptionExtraction() {
   const { assumptions, activeRing } = useAppState()
@@ -125,9 +125,9 @@ export default function AssumptionExtraction() {
 
         {/* Guided question chips */}
         <div className="flex flex-wrap gap-2">
-          {ringData.questions.map((q, i) => (
+          {ringData.questions.map((q) => (
             <button
-              key={i}
+              key={q.question}
               onClick={() => handleChipClick(q.starter)}
               className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full
                          text-sm text-white/60 transition-colors duration-200
