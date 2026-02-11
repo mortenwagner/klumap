@@ -1,0 +1,38 @@
+{
+  "opportunity": {
+    "label": "Opportunity",
+    "subtitle": "Is there a real need?",
+    "questions": [
+      { "question": "Who has this problem?", "starter": "We assume our target customer is..." },
+      { "question": "How painful is it?", "starter": "We assume this problem is urgent enough that..." },
+      { "question": "How many people have it?", "starter": "We assume the market size is..." },
+      { "question": "Why hasn't it been solved?", "starter": "We assume existing solutions fail because..." },
+      { "question": "Why now?", "starter": "We assume the timing is right because..." },
+      { "question": "Will they look for a solution?", "starter": "We assume people actively seek solutions by..." }
+    ]
+  },
+  "offering": {
+    "label": "Offering",
+    "subtitle": "Does our solution work?",
+    "questions": [
+      { "question": "Does it actually solve the problem?", "starter": "We assume our solution addresses the core pain by..." },
+      { "question": "Will they choose us?", "starter": "We assume people will prefer us over alternatives because..." },
+      { "question": "What's the key differentiator?", "starter": "We assume our unique advantage is..." },
+      { "question": "Will they understand it?", "starter": "We assume our value proposition is clear enough that..." },
+      { "question": "Will they come back?", "starter": "We assume users will return because..." },
+      { "question": "Will they tell others?", "starter": "We assume users will recommend us because..." }
+    ]
+  },
+  "operation": {
+    "label": "Operation",
+    "subtitle": "Can we make it work?",
+    "questions": [
+      { "question": "Can we build the hard part?", "starter": "We assume we can technically deliver..." },
+      { "question": "Can we deliver at viable cost?", "starter": "We assume our unit economics work because..." },
+      { "question": "Do we have the right team?", "starter": "We assume our team can execute because..." },
+      { "question": "Can we acquire customers affordably?", "starter": "We assume customer acquisition cost will be..." },
+      { "question": "Will it scale?", "starter": "We assume we can scale by..." },
+      { "question": "What's the regulatory risk?", "starter": "We assume compliance/regulation won't block us because..." }
+    ]
+  }
+}
