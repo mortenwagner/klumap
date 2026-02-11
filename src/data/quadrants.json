@@ -1,0 +1,48 @@
+{
+  "axes": {
+    "x": { "low": "Low Evidence", "high": "High Evidence", "label": "Evidence" },
+    "y": { "low": "Low Importance", "high": "High Importance", "label": "Importance" }
+  },
+  "quadrants": {
+    "clueless": {
+      "label": "Clueless Corner",
+      "icon": "⚠️",
+      "position": "top-left",
+      "row": 0,
+      "col": 0,
+      "description": "Important but unproven. Test these first.",
+      "color": "#c8956a",
+      "bgOpacity": 0.08
+    },
+    "validated": {
+      "label": "Validated",
+      "icon": "✓",
+      "position": "top-right",
+      "row": 0,
+      "col": 1,
+      "description": "Important and supported. Keep monitoring.",
+      "color": "#4ade80",
+      "bgOpacity": 0.04
+    },
+    "nice-to-know": {
+      "label": "Nice to Know",
+      "icon": "",
+      "position": "bottom-left",
+      "row": 1,
+      "col": 0,
+      "description": "Unproven but low-stakes. Park these.",
+      "color": "#94a3b8",
+      "bgOpacity": 0.03
+    },
+    "known": {
+      "label": "Known Territory",
+      "icon": "",
+      "position": "bottom-right",
+      "row": 1,
+      "col": 1,
+      "description": "Supported and low-stakes. Move on.",
+      "color": "#64748b",
+      "bgOpacity": 0.03
+    }
+  }
+}
