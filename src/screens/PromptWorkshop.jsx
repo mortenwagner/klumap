@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useAppState, useDispatch } from '../state/AppContext'
 import guidedQuestions from '../data/guided-questions.json'
 import approaches from '../data/prompts'
@@ -17,6 +17,15 @@ export default function PromptWorkshop() {
 
   const [copiedSingle, setCopiedSingle] = useState(false)
   const [copiedAll, setCopiedAll] = useState(false)
+  const copiedTimerRef = useRef(null)
+  const copiedAllTimerRef = useRef(null)
+
+  useEffect(() => {
+    return () => {
+      if (copiedTimerRef.current) clearTimeout(copiedTimerRef.current)
+      if (copiedAllTimerRef.current) clearTimeout(copiedAllTimerRef.current)
+    }
+  }, [])
 
   // Only show clueless-corner assumptions
   const cluelessAssumptions = useMemo(
@@ -43,9 +52,21 @@ export default function PromptWorkshop() {
       approachId: activeAssumption.selectedApproach,
       style: activeAssumption.promptStyle || 'focused',
     })
-  }, [activeAssumption, venture])
+  }, [activeAssumption?.selectedApproach, activeAssumption?.promptStyle, activeAssumption?.text, venture])
 
   // Handlers
+
+  function copyToClipboard(text) {
+    return navigator.clipboard.writeText(text).catch(() => {
+      const textarea = document.createElement('textarea')
+      textarea.value = text
+      textarea.style.cssText = 'position:fixed;opacity:0'
+      document.body.appendChild(textarea)
+      textarea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textarea)
+    })
+  }
 
   const handleSelectAssumption = useCallback((id) => {
     setActiveId(id)
@@ -77,13 +98,9 @@ export default function PromptWorkshop() {
 
   const handleCopySingle = useCallback(async () => {
     if (!renderedPrompt) return
-    try {
-      await navigator.clipboard.writeText(renderedPrompt)
-      setCopiedSingle(true)
-      setTimeout(() => setCopiedSingle(false), 2000)
-    } catch {
-      // Fallback: select text for manual copy
-    }
+    await copyToClipboard(renderedPrompt)
+    setCopiedSingle(true)
+    copiedTimerRef.current = setTimeout(() => setCopiedSingle(false), 2000)
   }, [renderedPrompt])
 
   const handleCopyAll = useCallback(async () => {
@@ -102,13 +119,9 @@ export default function PromptWorkshop() {
     if (allPrompts.length === 0) return
 
     const combined = allPrompts.join('\n\n---\n\n')
-    try {
-      await navigator.clipboard.writeText(combined)
-      setCopiedAll(true)
-      setTimeout(() => setCopiedAll(false), 2000)
-    } catch {
-      // Fallback
-    }
+    await copyToClipboard(combined)
+    setCopiedAll(true)
+    copiedAllTimerRef.current = setTimeout(() => setCopiedAll(false), 2000)
   }, [cluelessAssumptions, venture])
 
   const configuredCount = cluelessAssumptions.filter((a) => a.selectedApproach).length
