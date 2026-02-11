@@ -3,6 +3,8 @@
     "label": "Opportunity",
     "subtitle": "Is there a real need?",
     "color": "#c0392b",
+    "postitBg": "#FFB3C6",
+    "postitText": "#6b1a30",
     "questions": [
       { "question": "Who has this problem?", "starter": "We assume our target customer is..." },
       { "question": "How painful is it?", "starter": "We assume this problem is urgent enough that..." },
@@ -16,6 +18,8 @@
     "label": "Offering",
     "subtitle": "Does our solution work?",
     "color": "#4a6a8a",
+    "postitBg": "#93C5FD",
+    "postitText": "#1e3a5f",
     "questions": [
       { "question": "Does it actually solve the problem?", "starter": "We assume our solution addresses the core pain by..." },
       { "question": "Will they choose us?", "starter": "We assume people will prefer us over alternatives because..." },
@@ -29,6 +33,8 @@
     "label": "Operation",
     "subtitle": "Can we make it work?",
     "color": "#7a8a7a",
+    "postitBg": "#A7F3D0",
+    "postitText": "#14532d",
     "questions": [
       { "question": "Can we build the hard part?", "starter": "We assume we can technically deliver..." },
       { "question": "Can we deliver at viable cost?", "starter": "We assume our unit economics work because..." },

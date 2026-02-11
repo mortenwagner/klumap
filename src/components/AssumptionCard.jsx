@@ -32,8 +32,11 @@ export default function AssumptionCard({ assumption, isNew = false }) {
   const cancellingRef = useRef(false)
   const [entering, setEntering] = useState(isNew)
 
-  const color = guidedQuestions[assumption.ring].color
-  const label = guidedQuestions[assumption.ring].label
+  const ringData = guidedQuestions[assumption.ring]
+  const color = ringData.color
+  const label = ringData.label
+  const postitBg = ringData.postitBg
+  const postitText = ringData.postitText
   const rotation = getRotation(assumption.id)
 
   // Extra rotation for entry animation (larger swing)
@@ -88,37 +91,36 @@ export default function AssumptionCard({ assumption, isNew = false }) {
     dispatch({ type: 'DELETE_ASSUMPTION', id: assumption.id })
   }
 
-  // Post-it background: muted/pastel tint of ring color on dark bg
-  const postitBg = `${color}15`
-
   return (
     <div
       className={`
         group relative border-l-4 rounded-lg p-4
         transition-all duration-300
-        ${isEditing
-          ? 'bg-white/[0.08] shadow-lg shadow-white/5'
-          : 'hover:bg-white/[0.07]'
-        }
         ${entering ? 'postit-entering' : ''}
       `}
       style={{
         borderLeftColor: color,
-        backgroundColor: isEditing ? undefined : postitBg,
+        backgroundColor: postitBg,
         transform: isEditing ? 'rotate(0deg)' : `rotate(${rotation}deg)`,
         boxShadow: isEditing
-          ? `0 0 20px ${color}20, 0 4px 12px rgba(0,0,0,0.3)`
+          ? `0 0 20px ${color}40, 0 4px 12px rgba(0,0,0,0.3)`
           : '0 2px 8px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.15)',
         '--postit-rotation': `${rotation}deg`,
         '--postit-enter-rotation': `${enterRotation}deg`,
       }}
     >
+      {/* Paper fold corner */}
+      <div
+        className="absolute top-0 right-0 w-5 h-5"
+        style={{ background: 'linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.08) 50%)' }}
+      />
+
       {/* Tape strip at top center */}
       {!isEditing && (
         <div
           className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-10 h-3 rounded-sm"
           style={{
-            background: 'rgba(255,255,255,0.12)',
+            background: 'rgba(255,255,255,0.5)',
             boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
           }}
         />
@@ -133,24 +135,28 @@ export default function AssumptionCard({ assumption, isNew = false }) {
           onChange={(e) => setEditText(e.target.value)}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          className="w-full bg-white/5 border border-white/20 rounded-lg px-3 py-2
-                     text-white text-sm
-                     focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/10
+          className="w-full rounded-lg px-3 py-2 text-sm
+                     focus:outline-none focus:ring-1
                      transition-colors"
+          style={{
+            backgroundColor: 'rgba(255,255,255,0.3)',
+            border: `1px solid rgba(0,0,0,0.1)`,
+            color: postitText,
+          }}
         />
       ) : (
         /* Display mode */
         <div className="flex items-start gap-3">
           <div className="flex-1 min-w-0">
             {/* Assumption text */}
-            <p className="text-white text-sm leading-relaxed">{assumption.text}</p>
+            <p className="text-sm leading-relaxed font-medium" style={{ color: postitText }}>{assumption.text}</p>
             {/* Ring tag */}
             <div className="flex items-center gap-1.5 mt-2">
               <span
                 className="w-1.5 h-1.5 rounded-full shrink-0"
                 style={{ backgroundColor: color }}
               />
-              <span className="text-xs text-white/30">{label}</span>
+              <span className="text-xs" style={{ color: postitText, opacity: 0.5 }}>{label}</span>
             </div>
           </div>
 
@@ -162,7 +168,10 @@ export default function AssumptionCard({ assumption, isNew = false }) {
                 setEditText(assumption.text)
                 setIsEditing(true)
               }}
-              className="p-2 rounded-lg text-white/30 hover:text-white/70 hover:bg-white/5 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="p-2 rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              style={{ color: `${postitText}66` }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = postitText; e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.06)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = `${postitText}66`; e.currentTarget.style.backgroundColor = 'transparent' }}
               aria-label="Edit assumption"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -172,7 +181,10 @@ export default function AssumptionCard({ assumption, isNew = false }) {
             {/* Delete button */}
             <button
               onClick={handleDelete}
-              className="p-2 rounded-lg text-white/30 hover:text-red-400 hover:bg-white/5 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="p-2 rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              style={{ color: `${postitText}66` }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#dc2626'; e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.06)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = `${postitText}66`; e.currentTarget.style.backgroundColor = 'transparent' }}
               aria-label="Delete assumption"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

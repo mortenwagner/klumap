@@ -1,10 +1,15 @@
+import { useState } from 'react'
 import { useDispatch } from '../state/AppContext'
 import ORingMotif from '../components/ORingMotif'
 import JourneyAnimation from '../components/JourneyAnimation'
+import ExplainerModal from '../components/ExplainerModal'
+import ORingsExplainer from '../components/ORingsExplainer'
+import CluelessCornerExplainer from '../components/CluelessCornerExplainer'
 import guidedQuestions from '../data/guided-questions.json'
 
 export default function Welcome() {
   const dispatch = useDispatch()
+  const [explainerOpen, setExplainerOpen] = useState(null)
 
   return (
     <div className="flex-1 flex flex-col lg:flex-row min-h-screen">
@@ -33,7 +38,10 @@ export default function Welcome() {
           {/* Framework cards */}
           <div className="flex flex-col sm:flex-row gap-3">
             {/* O-Rings of Innovation */}
-            <div className="flex-1 bg-white/5 border border-white/10 rounded-xl p-3">
+            <button
+              onClick={() => setExplainerOpen('orings')}
+              className="flex-1 bg-white/5 border border-white/10 rounded-xl p-3 text-left cursor-pointer hover:bg-white/[0.08] hover:border-white/20 transition-all"
+            >
               <div className="flex items-center gap-2.5 mb-2">
                 {/* Mini O-Ring motif: 3 concentric circles */}
                 <svg width="28" height="28" viewBox="0 0 28 28" className="shrink-0">
@@ -47,10 +55,13 @@ export default function Welcome() {
               <p className="text-xs text-white/40 leading-relaxed">
                 Three layers of venture assumptions: Opportunity, Offering, Operation.
               </p>
-            </div>
+            </button>
 
             {/* The Clueless Corner */}
-            <div className="flex-1 bg-white/5 border border-white/10 rounded-xl p-3">
+            <button
+              onClick={() => setExplainerOpen('clueless')}
+              className="flex-1 bg-white/5 border border-white/10 rounded-xl p-3 text-left cursor-pointer hover:bg-white/[0.08] hover:border-white/20 transition-all"
+            >
               <div className="flex items-center gap-2.5 mb-2">
                 {/* Mini 2x2 grid icon */}
                 <svg width="28" height="28" viewBox="0 0 28 28" className="shrink-0">
@@ -64,7 +75,7 @@ export default function Welcome() {
               <p className="text-xs text-white/40 leading-relaxed">
                 Map assumptions by importance vs evidence to find your blind spots.
               </p>
-            </div>
+            </button>
           </div>
 
           {/* CTA */}
@@ -123,6 +134,14 @@ export default function Welcome() {
           <JourneyAnimation />
         </div>
       </div>
+
+      {/* Explainer modals */}
+      <ExplainerModal isOpen={explainerOpen === 'orings'} onClose={() => setExplainerOpen(null)}>
+        <ORingsExplainer />
+      </ExplainerModal>
+      <ExplainerModal isOpen={explainerOpen === 'clueless'} onClose={() => setExplainerOpen(null)}>
+        <CluelessCornerExplainer />
+      </ExplainerModal>
     </div>
   )
 }
