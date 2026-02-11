@@ -17,7 +17,7 @@ function hashCode(str) {
 /**
  * Derive a rotation in the range [-maxDeg, +maxDeg] from assumption ID.
  */
-function getRotation(id, maxDeg = 2.5) {
+function getRotation(id, maxDeg = 4) {
   const h = hashCode(id)
   // Map hash to [-1, 1] then scale
   const normalized = (h % 1000) / 1000
@@ -40,11 +40,11 @@ export default function AssumptionCard({ assumption, isNew = false }) {
   const rotation = getRotation(assumption.id)
 
   // Extra rotation for entry animation (larger swing)
-  const enterRotation = rotation + (hashCode(assumption.id) % 2 === 0 ? 8 : -8)
+  const enterRotation = rotation + (hashCode(assumption.id) % 2 === 0 ? 12 : -12)
 
   useEffect(() => {
     if (entering) {
-      const timer = setTimeout(() => setEntering(false), 500)
+      const timer = setTimeout(() => setEntering(false), 700)
       return () => clearTimeout(timer)
     }
   }, [entering])
@@ -94,17 +94,17 @@ export default function AssumptionCard({ assumption, isNew = false }) {
   return (
     <div
       className={`
-        group relative border-l-4 rounded-lg p-4
+        group relative rounded-sm p-4
         transition-all duration-300
+        aspect-square flex flex-col
         ${entering ? 'postit-entering' : ''}
       `}
       style={{
-        borderLeftColor: color,
         backgroundColor: postitBg,
         transform: isEditing ? 'rotate(0deg)' : `rotate(${rotation}deg)`,
         boxShadow: isEditing
           ? `0 0 20px ${color}40, 0 4px 12px rgba(0,0,0,0.3)`
-          : '0 2px 8px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.15)',
+          : '0 3px 10px rgba(0,0,0,0.25), 0 1px 4px rgba(0,0,0,0.15)',
         '--postit-rotation': `${rotation}deg`,
         '--postit-enter-rotation': `${enterRotation}deg`,
       }}
@@ -128,72 +128,77 @@ export default function AssumptionCard({ assumption, isNew = false }) {
 
       {isEditing ? (
         /* Edit mode — flattened, no rotation, subtle glow */
-        <input
-          ref={inputRef}
-          type="text"
-          value={editText}
-          onChange={(e) => setEditText(e.target.value)}
-          onBlur={handleBlur}
-          onKeyDown={handleKeyDown}
-          className="w-full rounded-lg px-3 py-2 text-sm
-                     focus:outline-none focus:ring-1
-                     transition-colors"
-          style={{
-            backgroundColor: 'rgba(255,255,255,0.3)',
-            border: `1px solid rgba(0,0,0,0.1)`,
-            color: postitText,
-          }}
-        />
+        <div className="flex-1 flex items-center">
+          <textarea
+            ref={inputRef}
+            value={editText}
+            onChange={(e) => setEditText(e.target.value)}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+            rows={3}
+            className="w-full rounded-lg px-3 py-2 text-[13px] leading-snug resize-none
+                       focus:outline-none focus:ring-1
+                       transition-colors"
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.3)',
+              border: '1px solid rgba(0,0,0,0.1)',
+              color: postitText,
+            }}
+          />
+        </div>
       ) : (
-        /* Display mode */
-        <div className="flex items-start gap-3">
-          <div className="flex-1 min-w-0">
-            {/* Assumption text */}
-            <p className="text-sm leading-relaxed font-medium" style={{ color: postitText }}>{assumption.text}</p>
+        <>
+          {/* Assumption text — centered in card */}
+          <div className="flex-1 flex items-center justify-center">
+            <p className="text-[13px] leading-snug font-medium text-center" style={{ color: postitText }}>
+              {assumption.text}
+            </p>
+          </div>
+
+          {/* Bottom bar: ring tag + action buttons */}
+          <div className="flex items-center justify-between mt-auto pt-1">
             {/* Ring tag */}
-            <div className="flex items-center gap-1.5 mt-2">
+            <div className="flex items-center gap-1.5">
               <span
                 className="w-1.5 h-1.5 rounded-full shrink-0"
                 style={{ backgroundColor: color }}
               />
-              <span className="text-xs" style={{ color: postitText, opacity: 0.5 }}>{label}</span>
+              <span className="text-[10px]" style={{ color: postitText, opacity: 0.4 }}>{label}</span>
+            </div>
+
+            {/* Action buttons — visible on hover (desktop) or always (mobile) */}
+            <div className="flex items-center gap-0.5 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <button
+                onClick={() => {
+                  setEditText(assumption.text)
+                  setIsEditing(true)
+                }}
+                className="p-1.5 rounded transition-colors min-w-[32px] min-h-[32px] flex items-center justify-center"
+                style={{ color: `${postitText}55` }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = postitText; e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.06)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = `${postitText}55`; e.currentTarget.style.backgroundColor = 'transparent' }}
+                aria-label="Edit assumption"
+              >
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M10 1.5L12.5 4 4.5 12H2V9.5L10 1.5Z" />
+                </svg>
+              </button>
+              <button
+                onClick={handleDelete}
+                className="p-1.5 rounded transition-colors min-w-[32px] min-h-[32px] flex items-center justify-center"
+                style={{ color: `${postitText}55` }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = '#dc2626'; e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.06)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = `${postitText}55`; e.currentTarget.style.backgroundColor = 'transparent' }}
+                aria-label="Delete assumption"
+              >
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="2" y1="2" x2="12" y2="12" />
+                  <line x1="12" y1="2" x2="2" y2="12" />
+                </svg>
+              </button>
             </div>
           </div>
-
-          {/* Action buttons — visible on hover (desktop) or always (mobile) */}
-          <div className="flex items-center gap-1 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-200 shrink-0">
-            {/* Edit button */}
-            <button
-              onClick={() => {
-                setEditText(assumption.text)
-                setIsEditing(true)
-              }}
-              className="p-2 rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-              style={{ color: `${postitText}66` }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = postitText; e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.06)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = `${postitText}66`; e.currentTarget.style.backgroundColor = 'transparent' }}
-              aria-label="Edit assumption"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M10 1.5L12.5 4 4.5 12H2V9.5L10 1.5Z" />
-              </svg>
-            </button>
-            {/* Delete button */}
-            <button
-              onClick={handleDelete}
-              className="p-2 rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-              style={{ color: `${postitText}66` }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = '#dc2626'; e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.06)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = `${postitText}66`; e.currentTarget.style.backgroundColor = 'transparent' }}
-              aria-label="Delete assumption"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="2" y1="2" x2="12" y2="12" />
-                <line x1="12" y1="2" x2="2" y2="12" />
-              </svg>
-            </button>
-          </div>
-        </div>
+        </>
       )}
     </div>
   )

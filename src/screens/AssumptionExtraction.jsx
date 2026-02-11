@@ -173,7 +173,7 @@ export default function AssumptionExtraction() {
         </div>
 
         {/* Assumption cards — board zone */}
-        <div className="flex flex-col gap-3 flex-1 bg-white/[0.02] rounded-xl p-3 -mx-1">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 flex-1 bg-white/[0.02] rounded-xl p-4 -mx-1">
           {filteredAssumptions.length === 0 ? (
             <p className="text-white/20 text-sm italic py-8 text-center">
               No {ringData.label} assumptions yet. Use the questions above for inspiration.
