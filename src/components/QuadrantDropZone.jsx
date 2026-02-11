@@ -95,10 +95,7 @@ export default function QuadrantDropZone({
 
       {/* Cards */}
       <SortableContext items={assumptions.map((a) => a.id)} strategy={rectSortingStrategy}>
-        <div className={`
-          flex-1 grid gap-2
-          ${count === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}
-        `}>
+        <div className="grid grid-cols-2 gap-2 content-start">
           {assumptions.map((assumption) => (
             <MatrixCard
               key={assumption.id}
@@ -106,6 +103,7 @@ export default function QuadrantDropZone({
               onUnmap={onUnmap}
               isSelected={selectedCardId === assumption.id}
               onSelect={onSelectCard}
+              square
             />
           ))}
         </div>
