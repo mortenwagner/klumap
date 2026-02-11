@@ -1,0 +1,19 @@
+{
+  "id": "customer-conversations",
+  "name": "Customer Conversations",
+  "icon": "🎤",
+  "shortDescription": "Structured problem interviews",
+  "bestFor": "Desirability assumptions — do people actually have this problem?",
+  "ringAffinity": ["opportunity", "offering"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me design a focused customer interview to validate or invalidate this assumption.\n\nI need:\n1. Screening criteria — who exactly should I interview, and who should I exclude?\n2. Five open-ended questions that reveal whether {{assumption}} is true, without leading the interviewee toward the answer I want to hear.\n3. For each question, what a validating response looks like vs. a red-flag response.\n4. What pattern across interviews would validate this assumption? What pattern would be a kill signal?\n5. How many conversations do I need for reasonable confidence, given my stage?"
+    },
+    "exploratory": {
+      "template": "Help me explore this assumption broadly through customer discovery.\n\nI want to understand:\n1. What different stakeholder groups might have a perspective on whether {{assumption}} is true? (Think end users, buyers, influencers, adjacent roles.)\n2. For each group, what are the 2-3 most revealing questions I could ask?\n3. What adjacent problems or behaviors might I discover that I haven't considered?\n4. What existing data sources (forums, reviews, social media, industry reports) could I mine before scheduling interviews?\n5. Design a 2-week discovery plan: who to talk to, in what order, what to learn from each conversation before the next."
+    },
+    "devils-advocate": {
+      "template": "Challenge my assumption ruthlessly.\n\n1. Give me the 3 strongest reasons why {{assumption}} is probably wrong.\n2. What cognitive biases am I likely falling into by believing this? (Consider confirmation bias, availability bias, the curse of knowledge, and others.)\n3. Who would most strongly disagree with this assumption, and what would their argument be?\n4. How do ventures typically fail when they build on this type of assumption without testing it?\n5. Where can I find the strongest counter-evidence? Who has tried something similar and failed?"
+    }
+  }
+}

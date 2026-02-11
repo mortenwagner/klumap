@@ -1,0 +1,19 @@
+{
+  "id": "smoke-test",
+  "name": "Smoke Test / Fake Door",
+  "icon": "🚪",
+  "shortDescription": "Test demand before building",
+  "bestFor": "Demand validation — will people actually show interest?",
+  "ringAffinity": ["opportunity", "offering"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me design a smoke test or fake door experiment to validate whether {{assumption}} is true.\n\nI need:\n1. A compelling landing page concept — headline, value proposition, and call to action that directly tests this assumption.\n2. What exactly to measure: which clicks, sign-ups, or actions indicate real demand vs. casual curiosity.\n3. What's the minimum traffic I need for statistical significance at this stage?\n4. What conversion rate would validate this assumption? What rate would be a kill signal?\n5. How long should I run the test, and what's the cheapest way to drive qualified traffic?"
+    },
+    "exploratory": {
+      "template": "Help me think broadly about testing demand for this assumption: {{assumption}}.\n\n1. What are multiple channels I could use to test demand? (Ads, social posts, email outreach, community posts, partnerships.)\n2. What do different metrics reveal? (Click-through vs. sign-up vs. deposit vs. share — what does each level of commitment actually tell me?)\n3. How should I sequence these experiments to learn the most with the least spend?\n4. What are the false positive risks — ways this test could show demand that doesn't actually exist?\n5. What complementary signals should I look for beyond the primary metric?"
+    },
+    "devils-advocate": {
+      "template": "Challenge my plan to smoke-test this assumption: {{assumption}}.\n\n1. Why does a click or sign-up NOT equal a real purchase or commitment? What's the gap between expressed interest and actual behavior?\n2. What are the most common mistakes founders make when running smoke tests? Which ones am I likely to make?\n3. What can this type of test fundamentally NOT tell me about my assumption?\n4. How does selection bias corrupt smoke test results? (Who clicks on ads vs. who actually buys?)\n5. Give me examples of ventures that had great smoke test results but failed anyway — and why."
+    }
+  }
+}

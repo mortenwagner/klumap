@@ -1,0 +1,19 @@
+{
+  "id": "concierge-mvp",
+  "name": "Concierge MVP",
+  "icon": "🤝",
+  "shortDescription": "Full service, zero tech",
+  "bestFor": "Value delivery validation — can we deliver real value by hand?",
+  "ringAffinity": ["offering", "operation"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me design a concierge test to validate whether {{assumption}} is true.\n\nI need:\n1. Who should my first 1-3 customers be? What makes them ideal for a hand-delivered version of my solution?\n2. What exactly should I deliver by hand? What's the minimum experience that tests this assumption?\n3. What feedback should I collect after each delivery — and how? (Not just 'did you like it' — what reveals real value?)\n4. What are the specific success metrics? What response validates this assumption, and what's a kill signal?\n5. How many concierge cycles do I need before I can confidently say this assumption is validated or invalidated?"
+    },
+    "exploratory": {
+      "template": "Help me think broadly about what a concierge approach could reveal about this assumption: {{assumption}}.\n\n1. What different service levels could I test? (High-touch vs. medium-touch — what does each reveal?)\n2. How could I experiment with pricing within a concierge model? What would willingness-to-pay at different levels tell me?\n3. What will I learn about operations — delivery costs, time requirements, edge cases — that I can't predict?\n4. What's my transition plan from concierge to product? What must be true before I invest in building?\n5. How can I structure this so each concierge customer teaches me something the previous one didn't?"
+    },
+    "devils-advocate": {
+      "template": "Challenge my plan to use a concierge MVP to test this assumption: {{assumption}}.\n\n1. Why doesn't concierge scale? What specifically breaks when I move from serving 3 people to 300?\n2. How is founder-delivered attention fundamentally different from product-delivered value? What am I really testing here?\n3. With a sample size of 1-3 people, what can I actually conclude? What are the statistical and psychological traps?\n4. How does a concierge approach create false validation? (Happy early adopters who love the attention, not the solution.)\n5. What assumptions am I NOT testing because concierge bypasses them entirely?"
+    }
+  }
+}

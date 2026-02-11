@@ -1,0 +1,19 @@
+{
+  "id": "presale-loi",
+  "name": "Pre-sale / Letter of Intent",
+  "icon": "💰",
+  "shortDescription": "Get a commitment before you build",
+  "bestFor": "Willingness-to-pay assumptions — will people put money behind this?",
+  "ringAffinity": ["opportunity", "offering"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me design a pre-sale or letter of intent experiment to validate whether {{assumption}} is true.\n\nI need:\n1. What exactly should I offer? How do I describe something that doesn't fully exist yet in a way that's honest and compelling?\n2. What pricing strategy should I use for the pre-sale? (Discount for early commitment? Full price? Tiered?)\n3. What commitment format is appropriate — letter of intent, refundable deposit, pre-order, or contract? What does each prove?\n4. How many commitments would validate this assumption? What number or conversion rate would be a kill signal?\n5. What should I do when someone says no — how do I extract maximum learning from rejections?"
+    },
+    "exploratory": {
+      "template": "Help me explore what pre-sale and commitment experiments could reveal about this assumption: {{assumption}}.\n\n1. What different levels of commitment could I test — from soft interest to hard cash? What does each level reveal?\n2. How could I test different pricing tiers within the pre-sale to learn about willingness-to-pay?\n3. Who should I approach first? What makes someone an ideal pre-sale candidate vs. a misleading one?\n4. How can I use the negotiation process itself as research? What do objections, hesitations, and conditions teach me?\n5. What do different types of 'no' reveal? (Not now vs. never, too expensive vs. wrong solution, not me vs. not anyone.)"
+    },
+    "devils-advocate": {
+      "template": "Challenge my plan to use pre-sales to validate this assumption: {{assumption}}.\n\n1. Why does a letter of intent NOT equal an actual purchase? What's the gap between commitment and follow-through?\n2. Why do people commit to things and then bail? What psychological and practical factors cause this?\n3. How does selection bias in early adopters mislead me? (Early adopters aren't representative of the mainstream market.)\n4. How can pre-sale pricing send false signals? (People who buy at a discount may not buy at full price.)\n5. What assumptions am I NOT testing by running a pre-sale? What risks remain even if people commit?"
+    }
+  }
+}

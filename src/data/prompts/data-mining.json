@@ -1,0 +1,19 @@
+{
+  "id": "data-mining",
+  "name": "Data Mining",
+  "icon": "📊",
+  "shortDescription": "Let existing data answer first",
+  "bestFor": "Market and sizing assumptions — what does the data already say?",
+  "ringAffinity": ["opportunity"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me find existing data that could validate or invalidate this assumption: {{assumption}}.\n\nI need:\n1. What public data sources could directly or indirectly address this assumption? (Government statistics, industry reports, academic research, app store data, social media analytics.)\n2. What specific metrics or data points should I look for? What numbers would validate this assumption vs. invalidate it?\n3. How confident can I be in secondary data for this type of assumption? What are the limits?\n4. What search queries and databases should I use to find this data efficiently?\n5. If the data exists, how do I interpret it? What constitutes strong evidence vs. weak evidence for my specific context?"
+    },
+    "exploratory": {
+      "template": "Help me explore the full landscape of existing data related to this assumption: {{assumption}}.\n\n1. What industry reports might contain relevant data? (Gartner, McKinsey, CB Insights, Statista, trade associations.)\n2. What government data sources are relevant? (Census, BLS, patent databases, regulatory filings.)\n3. What academic research or papers might have studied this domain? Where should I search?\n4. What social media signals could serve as proxy data? (Reddit threads, Twitter discussions, review sites, forum activity.)\n5. How could I triangulate multiple data sources to build a stronger picture? What would a data triangulation strategy look like?\n6. What competitor data is publicly available, and what does it reveal?"
+    },
+    "devils-advocate": {
+      "template": "Challenge my plan to use data mining to validate this assumption: {{assumption}}.\n\n1. Why might the available data be misleading for my specific assumption? What biases exist in published data?\n2. How does survivorship bias in industry reports distort my understanding of this market?\n3. How might the market I'm entering differ from what aggregate data suggests? (Local vs. global, niche vs. mainstream, timing differences.)\n4. When does relying on secondary data become a substitute for actually talking to customers? Am I using data mining as an avoidance strategy?\n5. What type of evidence can data mining fundamentally NOT provide for this assumption?"
+    }
+  }
+}

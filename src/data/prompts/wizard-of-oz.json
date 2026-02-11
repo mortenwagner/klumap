@@ -1,0 +1,19 @@
+{
+  "id": "wizard-of-oz",
+  "name": "Wizard of Oz",
+  "icon": "🎭",
+  "shortDescription": "Deliver manually what you'd automate",
+  "bestFor": "Solution validation — does the experience actually work?",
+  "ringAffinity": ["offering"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me design a Wizard of Oz test to validate whether {{assumption}} is true.\n\nI need:\n1. What exactly should I deliver manually to simulate the automated experience? What fidelity level is needed?\n2. How should I conceal the manual process from the user so their reactions reflect the real product experience?\n3. What specific user behaviors should I observe during the test? (Not just satisfaction — what actions reveal true value?)\n4. At what point, if ever, should I reveal that it was manual? What do I learn from the reveal?\n5. What's my success criteria — what user response validates this assumption, and what response kills it?"
+    },
+    "exploratory": {
+      "template": "Help me explore what a Wizard of Oz approach could teach me about this assumption: {{assumption}}.\n\n1. What different aspects of my solution could I test manually? Which one should I start with?\n2. If I ran a manual version for one week, what would I learn about how users actually interact with the solution?\n3. What would the experience teach me about operational requirements that I can't predict from the outside?\n4. What scaling indicators should I watch for — signs that the solution could work at scale vs. signs it only works with my personal attention?\n5. What are the transition criteria from 'this works manually' to 'time to build the real thing'?"
+    },
+    "devils-advocate": {
+      "template": "Challenge my plan to use a Wizard of Oz test for this assumption: {{assumption}}.\n\n1. How is a manual delivery fundamentally different from an automated one? What aspects of the user experience can I NOT replicate manually?\n2. What can a Wizard of Oz test NOT tell me about whether this assumption is true at scale?\n3. How might the manual approach give me false confidence? (Founder attention, cherry-picked users, unsustainable quality.)\n4. When does a Wizard of Oz test actively mislead founders? What are the warning signs?\n5. What alternative testing method would give me more reliable evidence for this specific assumption?"
+    }
+  }
+}

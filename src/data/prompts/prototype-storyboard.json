@@ -1,0 +1,19 @@
+{
+  "id": "prototype-storyboard",
+  "name": "Prototype / Storyboard",
+  "icon": "✏️",
+  "shortDescription": "Show, don't tell",
+  "bestFor": "Usability and appeal assumptions — will people get it and want it?",
+  "ringAffinity": ["offering"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me design a prototype test to validate whether {{assumption}} is true.\n\nI need:\n1. What should I prototype? What fidelity level is right for testing this assumption — paper sketch, clickable wireframe, or polished mockup?\n2. Who should I show it to? How do I recruit the right test participants (and how many)?\n3. What specific tasks should I ask people to attempt? What behaviors during those tasks validate this assumption?\n4. What reactions or responses would validate {{assumption}}? What responses would be a kill signal?\n5. How do I separate genuine excitement from politeness? What observable behaviors reveal real interest vs. social desirability?"
+    },
+    "exploratory": {
+      "template": "Help me explore what different prototype formats could reveal about this assumption: {{assumption}}.\n\n1. What are the different prototype formats I could use — paper prototypes, clickable wireframes, video walkthroughs, physical mockups, storyboards — and what does each one specifically test?\n2. How should my testing protocol differ based on the format I choose?\n3. What would a storyboard of the user journey reveal that a static prototype can't?\n4. How do I separate 'polite interest' from genuine excitement? What signals am I really looking for?\n5. What sequence of prototype tests would give me the most learning — what should I test first, second, third?\n6. How do I capture and organize feedback so it leads to clear decisions, not just a pile of opinions?"
+    },
+    "devils-advocate": {
+      "template": "Challenge my plan to use prototyping to validate this assumption: {{assumption}}.\n\n1. Why do prototype reactions NOT equal real behavior? What's the gap between 'I'd use this' and actually using it?\n2. How does social desirability bias corrupt prototype feedback? People want to be nice — how does that mislead me?\n3. What can prototypes fundamentally NOT test about this assumption? (Habit formation, willingness to pay, real-world switching costs.)\n4. What is the 'build trap' — how do founders use prototyping as an excuse to keep designing instead of testing with real stakes?\n5. What alternative approach would give me higher-fidelity evidence for this assumption?"
+    }
+  }
+}

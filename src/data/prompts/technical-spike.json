@@ -1,0 +1,19 @@
+{
+  "id": "technical-spike",
+  "name": "Technical Spike",
+  "icon": "⚡",
+  "shortDescription": "Can we actually build the hard part?",
+  "bestFor": "Feasibility assumptions — is the technical risk manageable?",
+  "ringAffinity": ["operation"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me design a technical spike to validate whether {{assumption}} is true.\n\nI need:\n1. What is the single riskiest technical component related to this assumption? What makes it risky?\n2. What should I build in a 1-2 day spike to test this? What's the minimum viable experiment?\n3. What are the concrete success criteria? (Performance benchmarks, cost thresholds, accuracy levels.)\n4. What will this spike teach me about scale, cost, and performance that I can't learn any other way?\n5. What's the simplest possible architecture for the spike — what do I build, what do I fake, and what do I skip?"
+    },
+    "exploratory": {
+      "template": "Help me explore the technical risks embedded in this assumption: {{assumption}}.\n\n1. What are the multiple technical risks hiding inside this assumption? List them from highest to lowest risk.\n2. How should I sequence technical spikes to learn the most? What should I test first?\n3. What does each spike reveal about the overall architecture? How do the results change my technical strategy?\n4. What build vs. buy vs. partner decisions does this assumption involve? How do I evaluate each option quickly?\n5. What would a 2-week technical exploration roadmap look like? What's the fastest path to knowing whether this is feasible?\n6. What technical debt would I intentionally take on in a spike, and what are the consequences?"
+    },
+    "devils-advocate": {
+      "template": "Challenge my plan to use a technical spike to validate this assumption: {{assumption}}.\n\n1. Why does a spike NOT equal production? What critical factors does a 1-2 day spike miss about real-world performance?\n2. What can technical spikes NOT reveal about operating at scale? (Data volume, edge cases, concurrent users, real-world latency.)\n3. Technical feasibility does NOT equal market feasibility — even if I can build it, why might it still fail commercially?\n4. How does premature optimization or over-engineering disguise itself as 'de-risking'? Am I solving the right problem?\n5. What non-technical risks am I ignoring by focusing on the technical spike? What should I be testing instead — or in parallel?"
+    }
+  }
+}

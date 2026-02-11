@@ -1,0 +1,19 @@
+{
+  "id": "expert-review",
+  "name": "Expert Review",
+  "icon": "🧠",
+  "shortDescription": "Ask people who've done it",
+  "bestFor": "Feasibility assumptions — is this actually possible?",
+  "ringAffinity": ["operation"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me design an expert review process to validate whether {{assumption}} is true.\n\nI need:\n1. Who are the 3 ideal expert profiles I should seek out? What specific experience makes them credible on this assumption?\n2. What specific questions should I ask each expert about {{assumption}}? (Not generic advice — targeted questions that test this exact assumption.)\n3. How should I structure a 30-minute expert call to get maximum signal? What order, what framing?\n4. What pattern of expert responses would validate this assumption? What would be a kill signal?\n5. How do I weigh expert opinions when they disagree with each other?"
+    },
+    "exploratory": {
+      "template": "Help me explore what expert perspectives could reveal about this assumption: {{assumption}}.\n\n1. What different types of experts could offer a perspective? (Technical experts, market experts, regulatory experts, operators who've built similar things.)\n2. How do I find and approach experts who would actually give me honest, useful feedback?\n3. What questions should I ask that experts typically won't volunteer on their own? What uncomfortable truths should I probe for?\n4. What blind spots do experts typically have? How do I account for expert bias?\n5. How can I structure expert conversations so each one builds on the last? What's my learning sequence?"
+    },
+    "devils-advocate": {
+      "template": "Challenge my plan to use expert review to validate this assumption: {{assumption}}.\n\n1. Why does expert opinion NOT equal market reality? When do experts get it wrong?\n2. What specific biases do experts carry? (Status quo bias, hammer-nail syndrome, domain blindness to adjacent markets.)\n3. When has expert consensus been spectacularly wrong? What patterns led to those failures?\n4. How might expert advice lead me to over-engineer, over-plan, or miss the real risk entirely?\n5. What would I learn from non-experts (actual customers, complete outsiders) that experts cannot tell me?"
+    }
+  }
+}

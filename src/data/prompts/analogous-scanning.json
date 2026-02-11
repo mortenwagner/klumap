@@ -1,0 +1,19 @@
+{
+  "id": "analogous-scanning",
+  "name": "Analogous Scanning",
+  "icon": "🔍",
+  "shortDescription": "Who solved similar problems elsewhere?",
+  "bestFor": "Novelty and innovation assumptions — has someone cracked this in another domain?",
+  "ringAffinity": ["opportunity", "offering"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me find analogous markets and products that could validate or invalidate this assumption: {{assumption}}.\n\nI need:\n1. What 3-5 analogous markets or products address a similar underlying assumption? (Think different industries, geographies, or time periods.)\n2. For each analogy, what transferable lessons exist? What worked and what failed?\n3. What specific patterns of success or failure emerged across these analogies?\n4. How should I adapt these learnings to my specific context? What translates directly vs. what needs adjustment?\n5. Which analogy is the strongest predictor for my assumption, and why?"
+    },
+    "exploratory": {
+      "template": "Help me explore the full landscape of analogies for this assumption: {{assumption}}.\n\n1. What adjacent industries have tackled similar problems? What can I learn from their journeys?\n2. What analogies exist in different geographies? (Has this been tried in other countries or cultures?)\n3. What historical parallels exist? (Past technology shifts, market transitions, regulatory changes.)\n4. What patterns emerge when I look across multiple analogies? What's common across successes? Across failures?\n5. Give me a framework for systematic analogous scanning — how do I find and evaluate analogies efficiently?\n6. What surprising analogies from completely different domains might apply here?"
+    },
+    "devils-advocate": {
+      "template": "Challenge my plan to use analogous scanning to validate this assumption: {{assumption}}.\n\n1. What makes an analogy false? What are the most common ways founders draw wrong conclusions from analogies?\n2. Why does 'Uber for X' or 'Netflix for Y' thinking often fail? What makes context transfer so unreliable?\n3. What specifically makes my context genuinely different from the analogies I might find?\n4. When do analogies actively mislead rather than inform? What are the warning signs?\n5. How might the best analogies for my assumption be ones I'd never think to look for — in domains completely unlike mine?"
+    }
+  }
+}
