@@ -1,17 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useDispatch } from '../state/AppContext'
-
-const RING_COLORS = {
-  opportunity: '#4ECDC4',
-  offering: '#FFB347',
-  operation: '#FF6B6B',
-}
-
-const RING_LABELS = {
-  opportunity: 'Opportunity',
-  offering: 'Offering',
-  operation: 'Operation',
-}
+import guidedQuestions from '../data/guided-questions.json'
 
 export default function AssumptionCard({ assumption }) {
   const dispatch = useDispatch()
@@ -19,8 +8,8 @@ export default function AssumptionCard({ assumption }) {
   const [editText, setEditText] = useState(assumption.text)
   const inputRef = useRef(null)
 
-  const color = RING_COLORS[assumption.ring]
-  const label = RING_LABELS[assumption.ring]
+  const color = guidedQuestions[assumption.ring].color
+  const label = guidedQuestions[assumption.ring].label
 
   useEffect(() => {
     if (isEditing && inputRef.current) {

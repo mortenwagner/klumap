@@ -1,8 +1,13 @@
-const RINGS = [
-  { name: 'opportunity', color: '#4ECDC4', r: 30, label: 'Opportunity' },
-  { name: 'offering', color: '#FFB347', r: 55, label: 'Offering' },
-  { name: 'operation', color: '#FF6B6B', r: 80, label: 'Operation' },
-]
+import guidedQuestions from '../data/guided-questions.json'
+
+const RING_RADII = { opportunity: 30, offering: 55, operation: 80 }
+const RING_ORDER = ['opportunity', 'offering', 'operation']
+const RINGS = RING_ORDER.map((name) => ({
+  name,
+  color: guidedQuestions[name].color,
+  r: RING_RADII[name],
+  label: guidedQuestions[name].label,
+}))
 
 export default function ORingSelector({ activeRing, onRingClick, assumptionCounts = {} }) {
   return (

@@ -4,12 +4,6 @@ import ORingSelector from '../components/ORingSelector'
 import AssumptionCard from '../components/AssumptionCard'
 import guidedQuestions from '../data/guided-questions.json'
 
-const RING_COLORS = {
-  opportunity: '#4ECDC4',
-  offering: '#FFB347',
-  operation: '#FF6B6B',
-}
-
 const RING_ORDER = ['opportunity', 'offering', 'operation']
 
 export default function AssumptionExtraction() {
@@ -19,7 +13,7 @@ export default function AssumptionExtraction() {
   const inputRef = useRef(null)
 
   const ringData = guidedQuestions[activeRing]
-  const ringColor = RING_COLORS[activeRing]
+  const ringColor = ringData.color
   const filteredAssumptions = assumptions.filter((a) => a.ring === activeRing)
   const totalCount = assumptions.length
   const canProceed = totalCount >= 3
@@ -70,7 +64,7 @@ export default function AssumptionExtraction() {
       <div className="flex lg:hidden gap-2">
         {RING_ORDER.map((ring) => {
           const isActive = activeRing === ring
-          const color = RING_COLORS[ring]
+          const color = guidedQuestions[ring].color
           const count = counts[ring]
           return (
             <button
@@ -198,7 +192,7 @@ export default function AssumptionExtraction() {
             {RING_ORDER.map((ring, i) => (
               <span key={ring} className="inline-flex items-center gap-1">
                 {i > 0 && <span className="text-white/15">,</span>}
-                <span style={{ color: RING_COLORS[ring] }}>{counts[ring]}</span>
+                <span style={{ color: guidedQuestions[ring].color }}>{counts[ring]}</span>
                 <span className="text-white/20">{guidedQuestions[ring].label}</span>
               </span>
             ))}

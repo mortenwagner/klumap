@@ -2,6 +2,7 @@
   "opportunity": {
     "label": "Opportunity",
     "subtitle": "Is there a real need?",
+    "color": "#4ECDC4",
     "questions": [
       { "question": "Who has this problem?", "starter": "We assume our target customer is..." },
       { "question": "How painful is it?", "starter": "We assume this problem is urgent enough that..." },
@@ -14,6 +15,7 @@
   "offering": {
     "label": "Offering",
     "subtitle": "Does our solution work?",
+    "color": "#FFB347",
     "questions": [
       { "question": "Does it actually solve the problem?", "starter": "We assume our solution addresses the core pain by..." },
       { "question": "Will they choose us?", "starter": "We assume people will prefer us over alternatives because..." },
@@ -26,6 +28,7 @@
   "operation": {
     "label": "Operation",
     "subtitle": "Can we make it work?",
+    "color": "#FF6B6B",
     "questions": [
       { "question": "Can we build the hard part?", "starter": "We assume we can technically deliver..." },
       { "question": "Can we deliver at viable cost?", "starter": "We assume our unit economics work because..." },
