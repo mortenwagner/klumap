@@ -99,3 +99,18 @@
 .clueless-quadrant {
   animation: clueless-pulse 3s ease-in-out infinite;
 }
+
+@keyframes screen-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.screen-enter {
+  animation: screen-enter 0.3s ease-out;
+}

@@ -97,6 +97,34 @@ export default function HelpPanel() {
               </ul>
             </div>
           )}
+
+          {currentScreen === 2 && (
+            <details className="mt-4">
+              <summary className="text-sm text-accent cursor-pointer hover:text-accent/80">
+                Learn more about the O-Rings of Innovation
+              </summary>
+              <div className="mt-3 text-sm text-white/50 space-y-2 pl-2 border-l-2 border-accent/20">
+                <p>Every venture rests on three concentric layers of assumptions:</p>
+                <p><strong className="text-white/70">Opportunity</strong> — Is there a real need? Who has the problem, and is it painful enough?</p>
+                <p><strong className="text-white/70">Offering</strong> — Does our solution work? Will people choose it over alternatives?</p>
+                <p><strong className="text-white/70">Operation</strong> — Can we deliver it? Do unit economics work at scale?</p>
+                <p>Like the O-rings on a space shuttle, a failure in any layer can bring down the whole venture.</p>
+              </div>
+            </details>
+          )}
+
+          {currentScreen === 3 && (
+            <details className="mt-4">
+              <summary className="text-sm text-accent cursor-pointer hover:text-accent/80">
+                Learn more about the Clueless Corner
+              </summary>
+              <div className="mt-3 text-sm text-white/50 space-y-2 pl-2 border-l-2 border-accent/20">
+                <p>The Clueless Corner is a 2x2 matrix plotting assumptions by <strong className="text-white/70">Importance</strong> (how critical to your venture) and <strong className="text-white/70">Evidence</strong> (how well supported).</p>
+                <p>The top-left quadrant — high importance, low evidence — is the <strong className="text-white/70">Clueless Corner</strong>. These are the assumptions that can kill your venture because they're critical but untested.</p>
+                <p>Most founders focus on what they already know. This tool forces you to confront what you don't.</p>
+              </div>
+            </details>
+          )}
         </div>
       </div>
     </>

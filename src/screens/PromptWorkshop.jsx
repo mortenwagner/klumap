@@ -4,6 +4,8 @@ import guidedQuestions from '../data/guided-questions.json'
 import approaches from '../data/prompts'
 import { approachById } from '../data/prompts'
 import { generatePrompt } from '../utils/promptEngine'
+import { exportPDF } from '../utils/exportPDF'
+import { downloadMarkdown } from '../utils/exportMarkdown'
 
 const PROMPT_STYLES = [
   { key: 'focused', label: 'Focused', icon: '🎯' },
@@ -360,6 +362,44 @@ export default function PromptWorkshop() {
                 : `Copy all ${configuredCount} prompts`
               }
             </button>
+          )}
+
+          {/* Export section */}
+          {configuredCount > 0 && (
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 sm:p-5 space-y-4">
+              <div className="space-y-1">
+                <h3 className="text-sm font-semibold text-white/60">Export Validation Brief</h3>
+                <p className="text-xs text-white/30">
+                  Download all configured prompts as a single document.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  onClick={() => exportPDF({ assumptions, venture })}
+                  className="btn-secondary text-sm"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Download PDF
+                </button>
+                <button
+                  onClick={() => downloadMarkdown({ assumptions, venture })}
+                  className="btn-secondary text-sm"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  Download Markdown
+                </button>
+              </div>
+              <p className="text-[11px] text-white/25 flex items-center gap-1.5">
+                <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Your Validation Brief is generated in your browser and downloaded directly to your device.
+              </p>
+            </div>
           )}
         </div>
       </div>

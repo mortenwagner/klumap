@@ -20,7 +20,9 @@ export default function App() {
 
   return (
     <Layout>
-      <Screen />
+      <div key={currentScreen} className="screen-enter flex-1 flex flex-col">
+        <Screen />
+      </div>
     </Layout>
   )
 }
