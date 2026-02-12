@@ -114,3 +114,61 @@
 .screen-enter {
   animation: screen-enter 0.3s ease-out;
 }
+
+/* Onboarding stepper step transitions */
+@keyframes stepper-forward {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes stepper-backward {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stepper-step-forward {
+  animation: stepper-forward 0.3s ease-out;
+}
+
+.stepper-step-backward {
+  animation: stepper-backward 0.3s ease-out;
+}
+
+/* Stepper progress dots */
+.stepper-dot {
+  @apply w-2.5 h-2.5 rounded-full bg-white/15 transition-all duration-200 cursor-pointer min-h-[44px] min-w-[44px];
+  background-clip: content-box;
+  padding: 17px;
+}
+
+.stepper-dot-active {
+  background-color: theme('colors.accent');
+}
+
+/* Screen intro card entry */
+@keyframes intro-card-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.intro-card-enter {
+  animation: intro-card-enter 0.3s ease-out;
+}

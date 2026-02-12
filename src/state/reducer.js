@@ -8,6 +8,8 @@ export const initialState = {
   assumptions: [],
   activeRing: 'opportunity',
   helpPanelOpen: false,
+  isGuidedOnboarding: false,
+  screenIntrosSeen: { screen2: false, screen3: false },
 }
 
 function generateId() {
@@ -71,6 +73,15 @@ export function reducer(state, action) {
 
     case 'CLOSE_HELP_PANEL':
       return { ...state, helpPanelOpen: false }
+
+    case 'SET_GUIDED_ONBOARDING':
+      return { ...state, isGuidedOnboarding: action.value }
+
+    case 'DISMISS_SCREEN_INTRO':
+      return {
+        ...state,
+        screenIntrosSeen: { ...state.screenIntrosSeen, [action.screen]: true },
+      }
 
     default:
       return state

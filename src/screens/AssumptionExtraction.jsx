@@ -2,12 +2,13 @@ import { useState, useRef } from 'react'
 import { useAppState, useDispatch } from '../state/AppContext'
 import ORingSelector from '../components/ORingSelector'
 import AssumptionCard from '../components/AssumptionCard'
+import ScreenIntroCard from '../components/ScreenIntroCard'
 import guidedQuestions from '../data/guided-questions.json'
 
 const RING_ORDER = Object.keys(guidedQuestions)
 
 export default function AssumptionExtraction() {
-  const { assumptions, activeRing } = useAppState()
+  const { assumptions, activeRing, isGuidedOnboarding, screenIntrosSeen } = useAppState()
   const dispatch = useDispatch()
   const [inputValue, setInputValue] = useState('')
   const inputRef = useRef(null)
@@ -51,6 +52,23 @@ export default function AssumptionExtraction() {
 
   return (
     <div className="flex-1 flex flex-col lg:flex-row max-w-5xl mx-auto w-full px-4 py-8 gap-8">
+      {/* Guided onboarding intro card */}
+      {isGuidedOnboarding && !screenIntrosSeen.screen2 && (
+        <ScreenIntroCard
+          title="The O-Rings of Innovation"
+          description="Three layers of venture assumptions — Opportunity (market need), Offering (your solution), and Operation (how you deliver). Add assumptions to each ring."
+          visual={
+            <svg width="48" height="48" viewBox="0 0 48 48" className="shrink-0">
+              <circle cx="24" cy="24" r="8" fill="none" stroke={guidedQuestions.opportunity.color} strokeWidth="2" opacity="0.8" />
+              <circle cx="24" cy="24" r="14" fill="none" stroke={guidedQuestions.offering.color} strokeWidth="2" opacity="0.6" />
+              <circle cx="24" cy="24" r="20" fill="none" stroke={guidedQuestions.operation.color} strokeWidth="2" opacity="0.4" />
+              <circle cx="24" cy="24" r="3" fill={guidedQuestions.opportunity.color} opacity="0.7" />
+            </svg>
+          }
+          onDismiss={() => dispatch({ type: 'DISMISS_SCREEN_INTRO', screen: 'screen2' })}
+        />
+      )}
+
       {/* Left panel — ORingSelector (desktop only) */}
       <aside className="hidden lg:flex lg:flex-col lg:w-[280px] lg:shrink-0 lg:pt-4">
         <ORingSelector

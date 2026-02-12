@@ -13,6 +13,7 @@ import {
 } from '@dnd-kit/core'
 import { SortableContext, rectSortingStrategy } from '@dnd-kit/sortable'
 import { useAppState, useDispatch } from '../state/AppContext'
+import ScreenIntroCard from '../components/ScreenIntroCard'
 import QuadrantDropZone from '../components/QuadrantDropZone'
 import MatrixCard from '../components/MatrixCard'
 import quadrantsConfig from '../data/quadrants.json'
@@ -43,7 +44,7 @@ function customCollisionDetection(args) {
 }
 
 export default function CluelessCorner() {
-  const { assumptions } = useAppState()
+  const { assumptions, isGuidedOnboarding, screenIntrosSeen } = useAppState()
   const dispatch = useDispatch()
 
   const [activeId, setActiveId] = useState(null)
@@ -161,6 +162,23 @@ export default function CluelessCorner() {
 
   return (
     <div className="flex-1 flex flex-col max-w-6xl mx-auto w-full px-4 py-6 sm:py-8 gap-6">
+      {/* Guided onboarding intro card */}
+      {isGuidedOnboarding && !screenIntrosSeen.screen3 && (
+        <ScreenIntroCard
+          title="The Clueless Corner"
+          description="Drag each assumption into the 2x2 matrix based on how important it is and how much evidence you have. The top-left corner — high importance, low evidence — is your Clueless Corner."
+          visual={
+            <svg width="48" height="48" viewBox="0 0 48 48" className="shrink-0">
+              <rect x="4" y="4" width="18" height="18" rx="3" fill="rgba(200,149,106,0.3)" stroke="rgba(200,149,106,0.6)" strokeWidth="1.5" />
+              <rect x="26" y="4" width="18" height="18" rx="3" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+              <rect x="4" y="26" width="18" height="18" rx="3" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+              <rect x="26" y="26" width="18" height="18" rx="3" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+            </svg>
+          }
+          onDismiss={() => dispatch({ type: 'DISMISS_SCREEN_INTRO', screen: 'screen3' })}
+        />
+      )}
+
       {/* Header */}
       <div className="space-y-1">
         <h2 className="text-2xl sm:text-3xl font-bold">Map your assumptions</h2>
