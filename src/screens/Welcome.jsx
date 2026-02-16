@@ -42,7 +42,7 @@ export default function Welcome() {
               </div>
 
               {/* Description */}
-              <p className="text-white/50 text-base leading-relaxed">
+              <p className="text-white/60 text-base leading-relaxed">
                 Identify the riskiest assumptions in your venture
                 and generate AI prompts to test them.
               </p>

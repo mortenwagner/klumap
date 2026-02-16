@@ -47,6 +47,7 @@ export default function AssumptionExtraction() {
   }
 
   function handleRingClick(ring) {
+    setInputValue('')
     dispatch({ type: 'SET_ACTIVE_RING', ring })
   }
 
