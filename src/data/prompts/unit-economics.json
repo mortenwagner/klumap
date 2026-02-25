@@ -1,0 +1,19 @@
+{
+  "id": "unit-economics",
+  "name": "Unit Economics Model",
+  "icon": "🧮",
+  "shortDescription": "Does the math actually work?",
+  "bestFor": "Viability assumptions — can we acquire, serve, and retain customers profitably?",
+  "ringAffinity": ["operation", "opportunity"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me build a unit economics model to test whether this assumption holds: {{assumption}}.\n\nI need:\n1. What are the key variables I need to estimate? (Customer acquisition cost, lifetime value, gross margin, churn rate, payback period — whichever apply.)\n2. For each variable, what's a realistic range given my stage? Give me a pessimistic, base, and optimistic case.\n3. Under what conditions does this assumption make the business viable? What are the break-even thresholds?\n4. What's the kill signal — at what point do the numbers say 'this doesn't work, pivot or stop'?\n5. What's the single most sensitive variable — the one that, if wrong by 2x, changes the conclusion entirely?"
+    },
+    "exploratory": {
+      "template": "Help me explore the full economics behind this assumption: {{assumption}}.\n\n1. Walk me through the complete value chain from customer acquisition to revenue realization. Where does money flow in and out?\n2. What business models have been used for similar ventures? How do their unit economics compare?\n3. What are the hidden costs founders in this space typically underestimate? (Support, infrastructure, compliance, returns, fraud.)\n4. How do unit economics typically evolve from early stage to scale? What improves, what gets worse?\n5. What pricing models could I test, and how does each one change the math?\n6. What are the 2-3 metrics I should track weekly to know if the economics are heading in the right direction?"
+    },
+    "devils-advocate": {
+      "template": "Challenge the financial viability of this assumption: {{assumption}}.\n\n1. Why do founders chronically underestimate costs and overestimate revenue? Where am I most likely doing this?\n2. What costs will appear at scale that don't exist today? (Support tickets, infrastructure, legal, compliance, team growth.)\n3. Why might my customer acquisition cost be 3-5x what I'm estimating? What drives CAC up in this type of business?\n4. What if my churn rate is double what I'm assuming — does the model still work? At what churn rate does it break?\n5. Show me examples of ventures in adjacent spaces whose unit economics looked good early but collapsed at scale. Why did that happen?"
+    }
+  }
+}

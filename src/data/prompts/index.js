@@ -1,26 +1,10 @@
-import customerConversations from './customer-conversations.json'
-import smokeTest from './smoke-test.json'
-import wizardOfOz from './wizard-of-oz.json'
-import conciergeMvp from './concierge-mvp.json'
-import dataMining from './data-mining.json'
-import expertReview from './expert-review.json'
-import analogousScanning from './analogous-scanning.json'
-import prototypeStoryboard from './prototype-storyboard.json'
-import presaleLoi from './presale-loi.json'
-import technicalSpike from './technical-spike.json'
+// Auto-discover all prompt JSON files in this directory.
+// To add a new approach: just drop a .json file here. No other changes needed.
+const modules = import.meta.glob('./*.json', { eager: true })
 
-const approaches = [
-  customerConversations,
-  smokeTest,
-  wizardOfOz,
-  conciergeMvp,
-  dataMining,
-  expertReview,
-  analogousScanning,
-  prototypeStoryboard,
-  presaleLoi,
-  technicalSpike,
-]
+const approaches = Object.values(modules)
+  .map((m) => m.default)
+  .sort((a, b) => a.name.localeCompare(b.name))
 
 export default approaches
 

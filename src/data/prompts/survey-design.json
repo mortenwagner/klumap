@@ -1,0 +1,19 @@
+{
+  "id": "survey-design",
+  "name": "Survey / Quantitative Test",
+  "icon": "📋",
+  "shortDescription": "Test at scale with structured questions",
+  "bestFor": "Quantifying demand, preferences, and willingness-to-pay across a larger sample",
+  "ringAffinity": ["opportunity", "offering"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me design a short survey to validate or invalidate this assumption: {{assumption}}.\n\nI need:\n1. A 5-7 question survey that tests this assumption without leading the respondent. For each question, explain what it measures and why.\n2. What answer patterns would validate this assumption? What patterns would be a kill signal?\n3. Who should I target — what's the screening question to ensure I'm surveying the right people?\n4. What's the minimum sample size I need for confidence at my stage? (Not academic rigor — founder-grade confidence.)\n5. What's the cheapest and fastest way to distribute this survey to qualified respondents?\n6. What's the single most important question — the one I'd ask if I could only ask one?"
+    },
+    "exploratory": {
+      "template": "Help me explore how quantitative research could shed light on this assumption: {{assumption}}.\n\n1. What are the different things I could measure with a survey? (Demand, preferences, willingness-to-pay, frequency of problem, current alternatives used.)\n2. How could I combine rating scales, multiple choice, and open-ended questions to get both breadth and depth?\n3. What segmentation questions would help me discover if this assumption is true for some groups but not others?\n4. How could I use conjoint-style questions to understand trade-offs my potential customers make?\n5. What existing survey tools and panel services could I use to get responses fast?\n6. How should I sequence a survey with qualitative interviews — survey first or interviews first, and why?"
+    },
+    "devils-advocate": {
+      "template": "Challenge my plan to use a survey to validate this assumption: {{assumption}}.\n\n1. Why do surveys systematically overestimate demand? What's the gap between 'I would use this' and actually using it?\n2. What types of assumptions can surveys fundamentally NOT validate? Is mine one of them?\n3. How does social desirability bias corrupt survey responses for this type of question?\n4. What's the difference between what people SAY they do and what they ACTUALLY do — and how does that affect my survey results?\n5. When is a survey an avoidance mechanism — a way to feel productive while avoiding the harder work of direct customer contact?"
+    }
+  }
+}
