@@ -1,0 +1,19 @@
+{
+  "id": "premortem",
+  "name": "Premortem",
+  "icon": "💀",
+  "shortDescription": "Imagine failure, then prevent it",
+  "bestFor": "Surfacing hidden risks — what could kill this before it starts?",
+  "ringAffinity": ["opportunity", "offering", "operation"],
+  "promptVariants": {
+    "focused": {
+      "template": "Run a focused premortem on this assumption: {{assumption}}.\n\nImagine it's 12 months from now and our venture has failed specifically because this assumption turned out to be wrong.\n\n1. Write the post-failure narrative — what happened, step by step, from the moment we committed to this assumption being true?\n2. What were the 3 earliest warning signs we should have caught but didn't?\n3. What did we dismiss or rationalize away that turned out to be critical?\n4. Who tried to warn us, and why didn't we listen?\n5. What's the single cheapest thing we could do THIS WEEK to test whether this failure scenario is plausible?"
+    },
+    "exploratory": {
+      "template": "Run a broad premortem exploring all the ways this assumption could bring us down: {{assumption}}.\n\n1. Generate 5 distinct failure scenarios — each one starting from this assumption being wrong in a DIFFERENT way. (Not just 'it's wrong' — HOW is it wrong?)\n2. For each scenario, who are the stakeholders that get hurt? Customers, team, investors, partners?\n3. What market shifts, competitor moves, or regulatory changes could make this assumption false even if it's true today?\n4. What second-order effects would this failure trigger? (Domino effects on other assumptions, team morale, runway.)\n5. Rank the scenarios by likelihood AND by severity. Which combination demands immediate attention?\n6. What's our early warning system — what metrics or signals should we be tracking starting now?"
+    },
+    "devils-advocate": {
+      "template": "Be brutally honest: why is this assumption {{assumption}} likely to destroy us?\n\n1. What's the most common way startups die from holding this exact type of assumption? Give me real examples.\n2. What makes founders uniquely blind to this kind of risk? What cognitive biases are at play?\n3. If I asked our toughest potential customer, our most skeptical advisor, and our most ruthless competitor about this assumption — what would each say?\n4. What's the 'silent killer' version of this assumption being wrong — the one where we don't even realize we've failed until it's too late?\n5. Make the strongest possible case that we should abandon this assumption right now. Don't hold back."
+    }
+  }
+}

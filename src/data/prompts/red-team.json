@@ -1,0 +1,19 @@
+{
+  "id": "red-team",
+  "name": "Red Team / Stress Test",
+  "icon": "🔴",
+  "shortDescription": "Attack your own thesis before the market does",
+  "bestFor": "Conviction stress-testing — can this assumption survive rigorous opposition?",
+  "ringAffinity": ["opportunity", "offering", "operation"],
+  "promptVariants": {
+    "focused": {
+      "template": "Red-team this assumption: {{assumption}}.\n\nYou are a sharp, experienced investor who has seen hundreds of startups fail. Your job is to find the fatal flaw.\n\n1. What's the single strongest argument that this assumption is wrong? Build the full case.\n2. What evidence would you demand before believing this assumption? Be specific.\n3. What similar assumptions have you seen other founders make that led to failure? What's the pattern?\n4. What's the 'uncomfortable question' the founding team is probably avoiding about this assumption?\n5. If you had to bet AGAINST this assumption, what would be your strategy and your timeline?"
+    },
+    "exploratory": {
+      "template": "Assemble a red team to stress-test this assumption from every angle: {{assumption}}.\n\nGive me perspectives from these five critics:\n1. **The Skeptical Customer**: Why would I NOT use this? What's stopping me? What would I use instead?\n2. **The Ruthless Competitor**: How would I crush this startup? What's their weakest point?\n3. **The Experienced VC**: What pattern am I seeing here that usually ends badly? What's the 'real risk' the founders haven't identified?\n4. **The Domain Expert**: What do outsiders to this industry always get wrong? What does the team not know that they don't know?\n5. **The Operations Realist**: What will break first when this hits the real world? What looks great on a slide deck but falls apart in practice?\n\nFor each perspective, give me the hardest question they would ask and the action I should take in response."
+    },
+    "devils-advocate": {
+      "template": "Destroy this assumption: {{assumption}}.\n\nDon't be polite. Don't soften the blow. I need to know if this assumption can survive contact with reality.\n\n1. Present the 3 most devastating arguments against this assumption. Use real-world examples, data, and logic.\n2. What are the founder's likely blind spots? What biases are making them cling to this assumption?\n3. If this assumption is wrong, when will we find out — and will it be too late? What's the cost of being wrong?\n4. What's the 'emperor has no clothes' version of this — the thing everyone around the founder can see but nobody is saying?\n5. Write the honest postmortem. It's 18 months from now, this assumption was wrong, and the venture is shutting down. What happened?"
+    }
+  }
+}

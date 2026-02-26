@@ -1,0 +1,19 @@
+{
+  "id": "competitive-landscape",
+  "name": "Competitive Landscape",
+  "icon": "🗺️",
+  "shortDescription": "Map the alternatives customers have today",
+  "bestFor": "Differentiation assumptions — is our position actually unique and defensible?",
+  "ringAffinity": ["opportunity", "offering"],
+  "promptVariants": {
+    "focused": {
+      "template": "Help me map the competitive landscape to test this assumption: {{assumption}}.\n\nI need:\n1. Who are the direct competitors addressing the same problem? Who are the indirect competitors and substitutes (including 'do nothing' and manual workarounds)?\n2. For each key competitor, what's their positioning, pricing, and primary strength?\n3. How does my assumption about differentiation hold up against what already exists? Where am I genuinely different vs. where am I fooling myself?\n4. What would a customer switching from a competitor to my solution need to believe? Is that realistic?\n5. What would validate this assumption — what evidence would show my differentiation is real? What would be a kill signal — what evidence would show I'm just another option?"
+    },
+    "exploratory": {
+      "template": "Help me do a thorough competitive analysis around this assumption: {{assumption}}.\n\n1. Map the full landscape: direct competitors, indirect alternatives, substitutes, and the 'status quo' solution. What does each one do well?\n2. What competitive dimensions matter most to customers? (Price, speed, quality, trust, convenience, integration.) How do I stack up on each?\n3. What can I learn from competitor reviews, complaints, and churn reasons? Where are they failing their customers?\n4. What moats or switching costs protect incumbents? What would it take for customers to actually switch?\n5. What market gaps exist that no one is filling? Are any of them strategically important?\n6. What are competitors likely to do in the next 12 months? How does that affect my assumption?"
+    },
+    "devils-advocate": {
+      "template": "Challenge my competitive positioning around this assumption: {{assumption}}.\n\n1. Why do founders overestimate their differentiation? What makes me think I'm different when customers might see me as 'just another X'?\n2. What if my competitors already tried my approach and abandoned it — what would that tell me?\n3. How easily could an incumbent copy whatever I'm building? What's my realistic window before they respond?\n4. Why might customers prefer the 'good enough' status quo over a better solution from an unknown startup?\n5. What if the competitive landscape shifts — a big player enters, a competitor pivots my way, or a new technology makes my approach obsolete? How fragile is my position?"
+    }
+  }
+}
